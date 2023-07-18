@@ -1,0 +1,106 @@
+package LinkedLists;
+
+class Node{
+    public Object item;
+    public Node next;//pointing to next node
+}
+public class linkedlistimplementation {
+    private int size;
+    private Node head;
+
+    public linkedlistimplementation(){
+        this.size=0;
+        this.head= null;
+    }
+    public void insertingnode(String i){
+        Node node= new Node();
+        node.item= i;
+        Node current=this.head;
+
+
+        if (this.head==null){
+            this.head=node;
+            this.head.next= null;
+            this.size=1;
+            System.out.println(this.head.toString());
+        }else{
+            while(current.next!=null){
+                current=current.next;
+            }
+            current.next=node;
+            node.next=null;
+            this.size+=1;
+        }
+    }
+    public void addAtStarting(String i){
+        Node n=new Node();
+        n.item=i;
+        n.next=this.head;
+        this.head=n;
+        n=this.head;
+    }
+    public void addAtMiddle(String i,int pos)
+    {
+        Node node=new Node();
+        Node current=this.head;
+        if(this.head!=null && pos<=this.size)
+        {
+            for(int j=0;j<pos;j++) {
+                current=current.next;
+            }
+            node.item=i;
+            node.next=current.next;
+            current.next=node;
+            this.size+=1;
+        }
+        else
+        {
+            System.out.println("position is greater than size");
+        }
+    }
+        public void deletingAtStart(){
+            Node n = new Node();
+            head.item=null;
+            head.next=head;
+    }
+    public void deletingAtEnd(int pos){
+        Node current = this.head;
+        if(this.head == null) {
+            System.out.println("No nodes are present");
+           }else{
+
+           current=current.next;
+        }
+    }
+    public void Search(int val){
+        Node current = this.head;
+        boolean flag = false;
+        for(int i= 0;i<size;i++){
+            if(current.item.equals(val)){
+                System.out.println("Element present at Index : " + i);
+                flag=true;
+            }current=current.next;
+        }
+        if(!flag){
+            System.out.println("Element not present in linked list");
+        }
+    }
+    public void printLinkedList(){
+        Node current = this.head;
+        for(int i = 0;i<size;i++){
+            System.out.println(current.item);
+            current=current.next;
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        linkedlistimplementation llist = new linkedlistimplementation();
+        llist.insertingnode("Bharath");
+        llist.insertingnode("Jaswanth");
+        llist.insertingnode("Bheema");
+        llist.printLinkedList();
+
+    }
+}
